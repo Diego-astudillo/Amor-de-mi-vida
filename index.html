@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Para ti, mi amor 💖</title>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Lora:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{
+  --noche:#1a0a1f; --vino:#3b1030; --rosa:#ff5c8a; --rosa-claro:#ffc2d6; --oro:#ffd9a0; --crema:#fff4f0;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{min-height:100%}
+body{
+  font-family:'Lora',Georgia,serif; color:var(--crema);
+  background:radial-gradient(ellipse at 50% 0%,var(--vino) 0%,var(--noche) 70%) fixed;
+  overflow-x:hidden;
+}
+canvas#fondo{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.stars{position:fixed;inset:0;z-index:0;pointer-events:none}
+.stars i{position:absolute;width:3px;height:3px;border-radius:50%;background:var(--oro);opacity:.3;animation:titilar 3s infinite ease-in-out}
+@keyframes titilar{50%{opacity:1;transform:scale(1.6)}}
+
+section{position:relative;z-index:1}
+
+/* PORTADA */
+#portada{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;gap:18px}
+#portada h1{font-family:'Dancing Script',cursive;font-size:clamp(2.4rem,9vw,4.5rem);color:var(--rosa-claro);text-shadow:0 0 24px rgba(255,92,138,.6)}
+#portada p{opacity:.8;font-style:italic}
+#corazon{
+  width:150px;height:150px;border:0;background:none;cursor:pointer;font-size:130px;line-height:1;
+  filter:drop-shadow(0 0 25px var(--rosa));animation:latido 1.3s infinite;
+}
+#corazon:focus-visible{outline:3px solid var(--oro);outline-offset:8px;border-radius:50%}
+@keyframes latido{0%,100%{transform:scale(1)}15%{transform:scale(1.18)}30%{transform:scale(1)}45%{transform:scale(1.12)}}
+
+/* CARTA */
+#carta{display:none;padding:60px 20px 40px}
+.papel{
+  max-width:640px;margin:0 auto;padding:clamp(24px,6vw,48px);
+  background:linear-gradient(160deg,rgba(255,244,240,.08),rgba(255,92,138,.08));
+  border:1px solid rgba(255,194,214,.35);border-radius:22px;backdrop-filter:blur(6px);
+  box-shadow:0 0 60px rgba(255,92,138,.2);
+}
+.papel h2{font-family:'Dancing Script',cursive;font-size:clamp(2rem,7vw,3rem);text-align:center;color:var(--rosa-claro);margin-bottom:22px}
+.papel p{font-size:clamp(1.02rem,3.8vw,1.18rem);line-height:1.85;margin-bottom:18px;opacity:0;transform:translateY(14px);transition:opacity 1s,transform 1s}
+.papel p.ver{opacity:1;transform:none}
+.papel p b{color:var(--oro);font-weight:400}
+.firma{font-family:'Dancing Script',cursive;font-size:2rem;text-align:right;color:var(--rosa-claro);margin-top:10px}
+
+/* CANCION */
+#cancion{display:none;padding:20px 20px 90px;text-align:center}
+.disco{
+  max-width:640px;margin:0 auto;padding:28px;border-radius:22px;
+  background:rgba(0,0,0,.3);border:1px solid rgba(255,217,160,.35)
+}
+.vinilo{
+  width:120px;height:120px;margin:0 auto 16px;border-radius:50%;
+  background:radial-gradient(circle,var(--rosa) 0 18%,#111 19% 100%);
+  box-shadow:0 0 0 6px #222,0 0 30px rgba(255,92,138,.5);animation:giro 5s linear infinite;
+}
+@keyframes giro{to{transform:rotate(360deg)}}
+.disco h3{font-family:'Dancing Script',cursive;font-size:2rem;color:var(--oro)}
+.disco p{margin:8px 0 18px;opacity:.85}
+.btn{
+  display:inline-block;margin:6px;padding:12px 24px;border-radius:999px;border:0;cursor:pointer;
+  font:inherit;color:#fff;text-decoration:none;background:linear-gradient(135deg,var(--rosa),#c2185b);
+  box-shadow:0 6px 22px rgba(255,92,138,.45);transition:transform .2s
+}
+.btn:hover{transform:scale(1.06)}
+.btn:focus-visible{outline:3px solid var(--oro);outline-offset:3px}
+.btn.sec{background:transparent;border:1px solid var(--rosa-claro);box-shadow:none}
+audio{width:100%;margin-top:14px;display:none}
+
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+
+<div class="stars" id="stars"></div>
+<canvas id="fondo"></canvas>
+
+<section id="portada">
+  <h1>Tengo algo para ti, mi coneja 🐰</h1>
+  <p>Toca el corazón</p>
+  <button id="corazon" aria-label="Abrir mi carta">💖</button>
+</section>
+
+<section id="carta">
+  <div class="papel">
+    <h2>Mi amor 💕</h2>
+    <p>Amor, mira que te amo mucho. Sabes, ya estás tanto en mi corazón que en serio solo quiero quedarme contigo y luchar mucho por nosotros.</p>
+    <p>Amor, no quiero a nadie más que no sean <b>tus ojos tan bellos</b>. En las fotos quedaste muy hermosa; para mis ojos tú eres <b>la mujer más hermosa del mundo</b>. Eres perfecta para mí.</p>
+    <p>Sé que no hemos hablado mucho, pero quiero verte, quiero hablar contigo, recochar, jugar juntos, hacer comida los dos. Quiero tantas cosas a tu lado, que quiero seguir y seguir a tu lado, siempre.</p>
+    <p>Te prometo que te cuidaré como nadie. Yo hasta te hago comida, te atiendo, lo que necesites. Como te dije el miércoles pasado, <b>yo por ti hasta me arrastro</b>, porque de corazón no quiero a nadie, no quiero conocer a nadie.</p>
+    <p>Te tengo a ti, y por ti lo doy todo en este mundo. Y también, en las fotos sales <b>tan preciosa, hermosa, divina, que me derreti al verlas, eres más que perfecta</b>. 💖</p>
+    <div class="firma">Tuyo, siempre ✨</div>
+  </div>
+</section>
+
+<section id="cancion">
+  <div class="disco">
+    <div class="vinilo"></div>
+    <h3>Una canción para ti 🎸</h3>
+    <p>Un rock romántico, como te lo dedico yo: <b id="nombreCancion"></b></p>
+    <iframe id="spotify" title="Eres - Café Tacvba" style="border-radius:14px;border:0;width:100%;height:152px;margin-bottom:10px"
+      src="https://open.spotify.com/embed/track/6kdCN6gTWLcLxmLXoUcwuI?utm_source=generator&theme=0"
+      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    <a class="btn" id="enlace" target="_blank" rel="noopener">▶ Abrir en Spotify</a>
+    <button class="btn sec" id="mas">Lluvia de corazones 💗</button>
+    <audio id="audio" controls></audio>
+  </div>
+</section>
+
+<script>
+/* ====== PERSONALIZA AQUÍ ====== */
+const CANCION = "Eres";
+const ARTISTA = "Café Tacvba";
+const ARCHIVO_MP3 = "";   // Ej: "cancion.mp3" (ponlo en la misma carpeta que este HTML)
+/* ================================ */
+
+// Estrellas
+const stars = document.getElementById('stars');
+for (let i = 0; i < 60; i++) {
+  const s = document.createElement('i');
+  s.style.left = Math.random() * 100 + '%';
+  s.style.top = Math.random() * 100 + '%';
+  s.style.animationDelay = Math.random() * 3 + 's';
+  stars.appendChild(s);
+}
+
+// Corazones flotantes
+const cv = document.getElementById('fondo'), ctx = cv.getContext('2d');
+let W, H, hearts = [];
+const EMOJIS = ['💖','💕','💗','❤️','💘','🌹'];
+function resize(){ W = cv.width = innerWidth; H = cv.height = innerHeight; }
+addEventListener('resize', resize); resize();
+
+function nuevo(x, y, rapido){
+  hearts.push({
+    x: x ?? Math.random() * W, y: y ?? H + 30,
+    s: 14 + Math.random() * 26,
+    v: (rapido ? 2 : .6) + Math.random() * (rapido ? 3 : 1.4),
+    dx: (Math.random() - .5) * (rapido ? 3 : .8),
+    f: Math.random() * 6, e: EMOJIS[Math.floor(Math.random() * EMOJIS.length)],
+    a: .35 + Math.random() * .5
+  });
+}
+function loop(){
+  ctx.clearRect(0, 0, W, H);
+  if (Math.random() < .06) nuevo();
+  hearts = hearts.filter(h => h.y > -50 && h.y < H + 80);
+  for (const h of hearts){
+    h.y -= h.v; h.f += .03;
+    h.x += h.dx + Math.sin(h.f) * .6;
+    ctx.globalAlpha = h.a; ctx.font = h.s + 'px serif';
+    ctx.fillText(h.e, h.x, h.y);
+  }
+  requestAnimationFrame(loop);
+}
+loop();
+
+// Explosión de corazones
+function explosion(x, y){
+  for (let i = 0; i < 40; i++){
+    nuevo(x, y, true);
+    const h = hearts[hearts.length - 1];
+    h.dx = (Math.random() - .5) * 8; h.v = Math.random() * 5 - 1;
+  }
+}
+
+// Abrir carta
+document.getElementById('corazon').addEventListener('click', e => {
+  explosion(e.clientX || W / 2, e.clientY || H / 2);
+  document.getElementById('portada').style.display = 'none';
+  const carta = document.getElementById('carta');
+  carta.style.display = 'block';
+  document.getElementById('cancion').style.display = 'block';
+  scrollTo(0, 0);
+  const ps = [...carta.querySelectorAll('p')];
+  ps.forEach((p, i) => setTimeout(() => p.classList.add('ver'), 700 + i * 1800));
+  setTimeout(() => explosion(W / 2, H * .8), 700 + ps.length * 1800);
+});
+
+// Canción
+document.getElementById('nombreCancion').textContent = '“' + CANCION + '” – ' + ARTISTA;
+document.getElementById('enlace').href =
+  'https://open.spotify.com/intl-es/track/6kdCN6gTWLcLxmLXoUcwuI?si=4a4822c113aa46a5';
+if (ARCHIVO_MP3){
+  const a = document.getElementById('audio');
+  a.src = ARCHIVO_MP3; a.style.display = 'block';
+}
+
+document.getElementById('mas').addEventListener('click', () => explosion(W / 2, H * .7));
+</script>
+</body>
+</html>
